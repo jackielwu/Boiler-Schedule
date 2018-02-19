@@ -1,14 +1,14 @@
 const request = require('supertest');
+const assert = require('chai').assert;
 const app = require('../index');
 
-
-describe('GET /', function(){
-  it('Responds with homepage', function(done){
+describe('Unit Test: Router - GET /', function() {
+  it('Validate 200 OK response.', function(done) {
     request(app)
       .get('/')
-      .expect(200)
-      .end(function(err, res){
+      .end(function(err, res) {
         if (err)  return done(err);
+        assert.strictEqual(res.statusCode, 200, 'Response code for / is ' + res.statusCode + '; it should be 200');
         done();
       });
   });
