@@ -14,3 +14,5 @@ app.use(session({
 // Run Express.
 app.use('/', router);
 app.listen(PORT, () => console.log('Running application locally on port ' + PORT));
+
+module.exports = app;

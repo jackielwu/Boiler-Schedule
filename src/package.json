@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./tests/*.test.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "cheerio": "latest",
     "cas-authentication": "latest",
     "express": "latest",
-    "express-session": "latest"
+    "express-session": "latest",
+    "supertest": "latest"
   }
 }
