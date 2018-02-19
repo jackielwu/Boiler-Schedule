@@ -4,8 +4,22 @@
     <title>
       Boiler Schedule
     </title>
+    <link rel='stylesheet' href='index.css'/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+
+    <meta name="google-signin-client_id" content="240768596370-apkrmmginclseiu9e4tnjhnqkpfvgrfv.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/api:client.js"></script>
+
   </head>
   <body>
-    Welcome.
+    <div id="outer_wrapper">
+      <div id="inner_wrapper">
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <a href="/purdue_signin">
+          <button id="purdue_signin">Sign in</button>
+        </a>
+      </div>
+    </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
   </body>
 </html>
