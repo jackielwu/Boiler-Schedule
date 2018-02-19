@@ -1,0 +1,46 @@
+html, body {
+    height: 100%;
+}
+
+#outer_wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#inner_wrapper {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 25%;
+}
+
+#purdue_signin {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/3/35/Purdue_Boilermakers_logo.svg");
+  background-repeat: no-repeat;
+  background-size: Auto 15px;
+  background-position: left;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+  background-position-x: 5%;
+  border: none;
+  background-color: white;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  height:36px;
+  width:120px;
+  font-family: 'Roboto', sans-serif;
+  color: #757579;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: .21px;
+  font-size: 13px;
+  line-height: 34px;
+  padding-left: 25px;
+  transition: background-color .218s,border-color .218s,box-shadow .218s;
+}
+
+.column {
+  margin: 0 -15px;
+}
