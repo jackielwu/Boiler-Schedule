@@ -1,0 +1,27 @@
+{
+  "name": "boiler-schedule",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackielwu/Boiler-Schedule.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jackielwu/Boiler-Schedule/issues"
+  },
+  "homepage": "https://github.com/jackielwu/Boiler-Schedule#readme",
+  "dependencies": {
+    "request": "latest",
+    "request-promise": "latest",
+    "cheerio": "latest",
+    "cas-authentication": "latest",
+    "express": "latest",
+    "express-session": "latest"
+  }
+}
