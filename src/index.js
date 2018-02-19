@@ -2,12 +2,16 @@ const app = require('express')();
 const session = require('express-session');
 const CASAuthentication = require('cas-authentication');
 
+const router = require('./router');
+app.use('/', router);
+
 const PORT = 3000
 
 // Express session.
 app.use(session({
   secret: 'SECRET_KEY', // TODO: Move to .env file for production.
-  resave: false
+  resave: false,
+  saveUninitialized: true
 }));
 
 // MyPurdue Authentication.
