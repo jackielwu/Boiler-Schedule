@@ -15,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/jackielwu/Boiler-Schedule/issues"
   },
-  "homepage": "https://github.com/jackielwu/Boiler-Schedule#readme"
+  "homepage": "https://github.com/jackielwu/Boiler-Schedule#readme",
+  "dependencies": {
+    "request": "latest",
+    "request-promise": "latest",
+    "cheerio": "latest",
+    "cas-authentication": "latest",
+    "express": "latest",
+    "express-session": "latest"
+  }
 }
