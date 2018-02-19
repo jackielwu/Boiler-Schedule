@@ -1,9 +1,8 @@
 const request = require('supertest');
 const app = require('../index');
 
-
-describe('GET /', function(){
-  it('Responds with homepage', function(done){
+describe('Unit Test: Router - GET /', function(){
+  it('Validate 200 OK response.', function(done){
     request(app)
       .get('/')
       .expect(200)

@@ -23,6 +23,7 @@
     "cas-authentication": "latest",
     "express": "latest",
     "express-session": "latest",
-    "supertest": "latest"
+    "supertest": "latest",
+    "chai": "latest"
   }
 }
