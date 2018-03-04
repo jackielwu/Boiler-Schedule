@@ -104,13 +104,7 @@ a:link, a:visited {
 </div>
 <script>
 	//get list of classes
-	var classes;
-    //get list of events created by user
-    var events;
-	function setClassButtons(){
-    	//call classes data from myPurdue.
-        //[0][0] is class title,[0][1] is date, [0][2] is description
-		classes = [
+	var classes  = [
    			["Eaps999","2018-07-01T08:00","I like the professor."],
   			["CS309","2018-09-01T08:00",""],
   			["","",""],
@@ -121,13 +115,31 @@ a:link, a:visited {
             ["","",""],
             ["","",""] 
 		];
-        events = [
+    //get list of events created by user
+    var events = [
         	["HW1",'2020-07-02T09:00',""],
             ["HW2","",""],
-            ["","",""],
-            ["","",""],
-            ["","",""],
+            ["hw3","",""],
+            ["hw4","",""],
+            ["hw5","",""]
         ];
+	function setClassButtons(){
+    	//set up the class term
+        var classterm = new Date(classes[0][1]);
+        var currentClassTerm;
+        if(classterm.getMonth()+1 <= 12 && classterm.getMonth()+1 >= 8){
+        	currentClassTerm = "Fall "+ classterm.getFullYear();
+        }
+        else if(classterm.getMonth()+1 <= 4 && classterm.getMonth()+1 >= 1){
+        	currentClassTerm = "Spring "+ classterm.getFullYear();
+        }
+       	else{
+       	 currentClassTerm = "Summer "+ classterm.getFullYear();
+        }
+        //currentClassTerm;
+        document.getElementById("classTerm").innerHTML = currentClassTerm;
+    	//call classes data from myPurdue.
+        //[0][0] is class title,[0][1] is date, [0][2] is description
     	var idname = "class0";
         //activate buttons for classes
 		for(var i=0; i<9; i++){
@@ -243,15 +255,8 @@ a:link, a:visited {
                 	classes[index][i] = currentInput.value;
                 }
                 else{
-                	/*if(i == 1){
-                    	var dateControl = document.querySelector('input[type="datetime-local"]');
-                    	events[index][i] = dateControl.value;
-                        alert("hi");
-                        dateControl.value = "";
-                    }
-                    else{*/
                 		events[index][i] = currentInput.value;
-                    //}
+                    
                 }
             }
             currentInput.value = "";

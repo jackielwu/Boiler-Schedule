@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head></head>
-
 <script>
 // Below function Executes on click of login button.
 function validate(){
@@ -9,7 +5,7 @@ function validate(){
 	var password = document.getElementById("inputPassword").value;
 	if ( username == "google" && password == "cs408"){
 		alert ("Login successfully");
-		window.location = "boilerScheduleLogin.html"; // Redirecting to other page.
+		//window.location = "boilerScheduleLogin.html"; // Redirecting to other page.
 		return false;
 	}
 	else{
@@ -209,9 +205,9 @@ img {
             <form class="form-signin">
                 <span id="reauth-email" class="reauth-email"></span>
                 <p class="input_title">Username</p>
-                <input type="text" id="inputEmail" class="login_box" placeholder="Enter Username" required autofocus>
+                <input type="text" id="inputEmail" class="login_box" placeholder="Enter Username" maxlength = 20 required autofocus>
                 <p class="input_title">Password</p>
-                <input type="password" id="inputPassword" class="login_box" placeholder="Enter Password" required>
+                <input type="password" id="inputPassword" class="login_box" placeholder="Enter Password" maxlength = 20 required>
                 <div id="remember" class="checkbox">
                 <span id="reauth-email" class="reauth-email"></span>
                 </div>
