@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
@@ -68,7 +69,7 @@ a:link, a:visited {
 <h1>Boiler Schedule</h1>
 <span class = "PageTitle">Class List </span>
 <span class = "PageTitle" id="classTerm" style = "color:#CFB53B; margin-right">Summer 2018</span>
-<h1></h1> 
+<h1></h1>
 <a href="#" id="class0" onclick="showBlock(this) ">class0</a>
 <a href="#" id="class1" onclick="showBlock(this) ">class1</a>
 <a href="#" id="class2" onclick="showBlock(this) ">class2</a>
@@ -113,7 +114,7 @@ a:link, a:visited {
             ["","",""],
             ["","",""],
             ["","",""],
-            ["","",""] 
+            ["","",""]
 		];
     //get list of events created by user
     var events = [
@@ -166,7 +167,7 @@ a:link, a:visited {
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
 	var currentElement;
-	// When the user clicks the button, open the modal 
+	// When the user clicks the button, open the modal
 	function showBlock(elem) {
       currentElement = elem;
   	  modal.style.display = "block";
@@ -256,7 +257,7 @@ a:link, a:visited {
                 }
                 else{
                 		events[index][i] = currentInput.value;
-                    
+
                 }
             }
             currentInput.value = "";
