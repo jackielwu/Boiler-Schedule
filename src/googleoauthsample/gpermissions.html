@@ -3,9 +3,17 @@
   <meta name="google-signin-client_id" content="800990545369-din7qjuc6uh22vri6f9dtu7q2mio9qch.apps.googleusercontent.com">
 </head>
 <body>
-  <div id="my-signin2"></div>
-  <script> src="gpermissions.js" </script>
+  <p>Google Calendar API Quickstart</p>
 
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!--Add buttons to initiate auth sequence and sign out-->
+  <button id="authorize-button" style="display: none;">Authorize</button>
+  <button id="signout-button" style="display: none;">Sign Out</button>
+
+  <pre id="content"></pre>
+  <script src="gpermissions.js"> </script>
+  <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
 </body>
 </html>
