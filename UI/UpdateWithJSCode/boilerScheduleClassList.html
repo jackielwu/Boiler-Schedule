@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
+
+a:link, a:visited {
+    background-color: black;
+    color: #CFB53B;
+    padding: 70px 70px;
+    text-align: center;
+    text-decoration: none;
+    display: none;
+    font-size: 20px;
+    margin-top:10px;
+    box-sizing: border-box;
+}
+
+.PageTitle {
+	text-decoration: underline;
+    font-size: 35px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+</style>
+</head>
+<!--set up classes and events buttons when the page start-->
+<body onload="setClassButtons() ;">
+<h1>Boiler Schedule</h1>
+<span class = "PageTitle">Class List </span>
+<span class = "PageTitle" id="classTerm" style = "color:#CFB53B; margin-right">Summer 2018</span>
+<h1></h1>
+<a href="#" id="class0" onclick="showBlock(this) ">class0</a>
+<a href="#" id="class1" onclick="showBlock(this) ">class1</a>
+<a href="#" id="class2" onclick="showBlock(this) ">class2</a>
+<a href="#" id="class3" onclick="showBlock(this) ">class3</a>
+<a href="#" id="class4" onclick="showBlock(this) ">class4</a>
+<a href="#" id="class5" onclick="showBlock(this) ">class5</a>
+<a href="#" id="class6" onclick="showBlock(this) ">class6</a>
+<a href="#" id="class7" onclick="showBlock(this) ">class7</a>
+<a href="#" id="class8" onclick="showBlock(this) ">class8</a>
+<a href="#" id="event0" onclick="showBlock(this) ">event0</a>
+<a href="#" id="event1" onclick="showBlock(this) ">event1</a>
+<a href="#" id="event2" onclick="showBlock(this) ">event2</a>
+<a href="#" id="event3" onclick="showBlock(this) ">event3</a>
+<a href="#" id="event4" onclick="showBlock(this) ">event4</a>
+
+<h1></h1>
+<button class="btn btn-default btn-success btn-md btn-block" href="#calendarView">Go to Calendar view</button>
+<button class="btn btn-default btn-warning btn-md btn-block" href="#logOut">Fetch everything to Google calendar...</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <label>Activities Title: </label>
+    <input type ="text" maxLength="100" id="input0"><br>
+    <label>Date and Time:</label>
+    <input type="datetime-local" id="input1"><br>
+    <label>Activities Description: </label>
+    <textarea rows="4" cols="50" maxLength="200" id="input2"></textarea>
+  </div>
+</div>
+<script>
+	//get list of classes
+	var classes  = [
+   			["Eaps999","2018-07-01T08:00","I like the professor."],
+  			["CS309","2018-09-01T08:00",""],
+  			["","",""],
+            ["","",""],
+            ["","",""],
+            ["","",""],
+            ["","",""],
+            ["","",""],
+            ["","",""]
+		];
+    //get list of events created by user
+    var events = [
+        	["HW1",'2020-07-02T09:00',""],
+            ["HW2","",""],
+            ["hw3","",""],
+            ["hw4","",""],
+            ["hw5","",""]
+        ];
+	function setClassButtons(){
+    	//set up the class term
+        var classterm = new Date(classes[0][1]);
+        var currentClassTerm;
+        if(classterm.getMonth()+1 <= 12 && classterm.getMonth()+1 >= 8){
+        	currentClassTerm = "Fall "+ classterm.getFullYear();
+        }
+        else if(classterm.getMonth()+1 <= 4 && classterm.getMonth()+1 >= 1){
+        	currentClassTerm = "Spring "+ classterm.getFullYear();
+        }
+       	else{
+       	 currentClassTerm = "Summer "+ classterm.getFullYear();
+        }
+        //currentClassTerm;
+        document.getElementById("classTerm").innerHTML = currentClassTerm;
+    	//call classes data from myPurdue.
+        //[0][0] is class title,[0][1] is date, [0][2] is description
+    	var idname = "class0";
+        //activate buttons for classes
+		for(var i=0; i<9; i++){
+         	if(classes[i][0]!==""){
+    			idname = (idname.substring(0, idname.length - 1) + 		(i.toString()));
+            	var element = document.getElementById(idname);
+            	element.style.display = "inline-block";
+				element.innerHTML = classes[i][0];
+            }
+		}
+        //activate buttons for events enter by users
+        idname = "event0";
+        for(var i=0; i<5; i++){
+        	if(events[i][0]!==""){
+        		idname = (idname.substring(0, idname.length - 1) + 		(i.toString()));
+            	var element = document.getElementById(idname);
+           		element.style.display = "inline-block";
+				element.innerHTML = events[i][0];
+            }
+        }
+    }
+	// Get the modal
+	var modal = document.getElementById('myModal');
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+	var currentElement;
+	// When the user clicks the button, open the modal
+	function showBlock(elem) {
+      currentElement = elem;
+  	  modal.style.display = "block";
+  	  //var idname = document.getElementById(elem.id);
+      //var index = elem.id.substring(elem.id.length-1,elem.id.length));
+      var index = elem.id.slice(-1);
+      //if this is a class object load the class data
+      if(elem.id.match("class.*")){
+      	for(var i = 0; i < 3; i++){
+        	//if there is some text in the object already
+        	if(classes[index][i] !== ""){
+            	var inputId;
+                switch(i){
+                	case 0:
+                    	inputId = "input0";
+                    	break;
+                    case 1:
+                    	inputId = "input1";
+                    	break;
+                    default:
+						inputId = "input2";
+                   		break;
+                }
+                if(inputId == "input1"){
+                	var datecontrol = document.querySelector('input[type="datetime-local"]');
+                    datecontrol.value = classes[index][i];
+                    datecontrol.readOnly = true;
+                }
+                else{
+               		var currentInput = document.getElementById(inputId);
+                	if(inputId == "input0"){
+                		currentInput.readOnly = true;
+                	}
+               		//alert(classes[index][i]);
+                	currentInput.value = classes[index][i];
+                }
+            }
+      		//alert(classes[index][i]);
+        }
+      }
+      //if the element is event
+      else{
+      	for(var i = 0; i < 3; i++){
+        	//if there is some text in the object already
+        	if(events[index][i] !== ""){
+            	var inputId;
+                switch(i){
+                	case 0:
+                    	inputId = "input0";
+                    	break;
+                    case 1:
+                    	inputId = "input1";
+                    	break;
+                    default:
+						inputId = "input2";
+                   		break;
+                }
+                if(inputId == "input1"){
+                	var dateControl = document.querySelector('input[type="datetime-local"]');
+                    dateControl.value = events[index][i];
+                    //datecontrol.readOnly = true;
+                }
+                else{
+               		var currentInput = document.getElementById(inputId);
+                	if(inputId == "input0"){
+                		currentInput.readOnly = true;
+                	}
+               		currentInput.value = events[index][i];
+                }
+            }
+      		//alert(classes[index][i]);
+        }
+      }
+	}
+    //function to clear input field of modal
+	function clearInput(){
+    	for(var i = 0; i < 3; i++){
+        	var inputId = "input"+i;
+            var currentInput = document.getElementById(inputId);
+            if(currentInput.readOnly == true){
+        		currentInput.readOnly = false;
+            }
+            else{
+            	var index = currentElement.id.slice(-1);
+            	if(currentElement.id.match("class.*")){
+                	classes[index][i] = currentInput.value;
+                }
+                else{
+                		events[index][i] = currentInput.value;
+
+                }
+            }
+            currentInput.value = "";
+        }
+    }
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+    	modal.style.display = "none";
+        clearInput();
+	}
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+   		if (event.target == modal) {
+    	    modal.style.display = "none";
+            clearInput();
+    	}
+	}
+</script>
+</body>
+</html>
