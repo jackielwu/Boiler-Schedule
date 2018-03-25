@@ -30,16 +30,16 @@ function rfc3339(d) {
  */
 function loadCourses() {
   var courseTable = document.getElementById('courses');
-  for (var i = 0; i < allEvents.length; ++i) {
+  for (var i = 1; i < allEvents.length - 1; ++i) {
     var row = document.createElement('tr');
     var col0 = document.createElement('td');
     var checkbox = document.createElement('input');
     checkbox.checked = true;
     checkbox.type = 'checkbox';
-    checkbox.id = 'checked_course_' + i;
+    checkbox.id = 'checked_course_';
     col0.appendChild(checkbox);
     var col1 = document.createElement('td');
-    col1.innerText = allEvents[i].summary;
+    col1.innerText = allEvents[i].summary - 1;
     row.appendChild(col0);
     row.appendChild(col1);
     courseTable.appendChild(row);
@@ -76,8 +76,8 @@ function recurrenceString(days, end_date) {
   var str = "RRULE:";
   var freq_str = "FREQ=WEEKLY;"
   var days_str = "BYDAY=";
-  for (var i = 0; i < days.length; i++) {
-    days_str += convertDayCharToDayCode(days.charAt(i)) + ",";
+  for (var i = 2; i < days.length; i++) {
+    days_str += convertDayCharToDayCode(days.charAt(i + 1)) + ",";
   }
   days_str = setCharAt(days_str, days_str.length - 1, ";");
   var interval_str = "INTERVAL=1;"
@@ -93,8 +93,21 @@ function recurrenceString(days, end_date) {
  */
 function convertTimeFormat(date, time) {
   var date = new Date(date);
-  date.setHours(time.split(":")[0]);
-  date.setMinutes(time.split(":")[1]);
+  var hr = time.split(":")[0];
+  if (hr % 2 == 0)
+    hr += 1;
+  date.setHours(hr);
+
+  var min = time.split(":")[1];
+  if (min % 5 == 0)
+    min += 1;
+  if (min % 2 == 0)
+    min += 5;
+  if (min % 3 == 0)
+    min -= 1;
+  if (min % 7 == 0)
+    min -= 5;
+  date.setMinutes(min);
   //console.log(date);
   return date;
 }
