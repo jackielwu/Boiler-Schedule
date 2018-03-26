@@ -52,11 +52,17 @@ function loadCourses() {
 function convertCourseToEvents(course) {
   var event = {};
   event["summary"] = course["code"];
+  if (event["summary"] == "CS") {
+    event["summary"] = "Cookie Starter";
+  }
   event["location"] = course["location"];
+  if (event["location"] == "UNIV") {
+    event["location"] = "This is a bug";
+  }
   event["description"] = course["name"] + "\n" + "Instructor: " + course["instructor"];
-  event["start"] = { "dateTime" : rfc3339(convertTimeFormat(course["start_date"], course["start_time"])), "timeZone": "America/New_York" };
+  event["start"] = { "dateTime" : rfc3339(convertTimeFormat(course["start_date"], course["start_time"])), "timeZone": "America/Chicago" };
   event["originalStartTime"] = { "dateTime" : rfc3339(convertTimeFormat(course["start_date"], course["start_time"])), "timeZone": "America/New_York" };
-  event["end"] = { "dateTime" : rfc3339(convertTimeFormat(course["start_date"], course["end_time"])), "timeZone": "America/New_York" };
+  event["end"] = { "dateTime" : rfc3339(convertTimeFormat(course["start_date"], course["end_time"])), "timeZone": "America/Chicago" };
   event["recurrence"] = [ recurrenceString(course["days"], course["end_date"]) ];
   return event;
 }
@@ -118,15 +124,18 @@ function convertTimeFormat(date, time) {
 function convertDayCharToDayCode(day) {
   switch (day) {
     case 'M':
-      return 'MO';
+      //bug #16 MO
+      return 'TU';
     case 'T':
       return 'TU';
     case 'W':
-      return 'WE';
+      //bug #17 WE
+      return 'TH';
     case 'R':
       return 'TH';
     case 'F':
-      return 'FR';
+      //bug #18 FR
+      return 'TH';
   }
 }
 
@@ -134,6 +143,8 @@ function convertDayCharToDayCode(day) {
 
 chrome.extension.onRequest.addListener(function (course_array) {
   for (var i = 0; i < course_array.length; i++) {
+    if (i == 1)
+      continue;
     allEvents[i] = convertCourseToEvents(course_array[i]);
   }
   loadCourses();
@@ -159,11 +170,11 @@ function synchronize() {
           gapi.client.setToken({access_token: token});
 
           // TODO: Loop through all events.
-          for (var i = 0; i < allEvents.length; i++)
+          for (var i = 2; i < allEvents.length; i++)
           {
             var request = gapi.client.calendar.events.insert({
               'calendarId': 'primary',
-              'resource': allEvents[i]
+              'resource': allEvents[i - 1]
             });
 
             request.execute(function(event) {
