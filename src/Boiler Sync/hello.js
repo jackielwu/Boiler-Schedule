@@ -30,16 +30,16 @@ function rfc3339(d) {
  */
 function loadCourses() {
   var courseTable = document.getElementById('courses');
-  for (var i = 0; i < allEvents.length; ++i) {
+  for (var i = 1; i < allEvents.length - 1; ++i) {
     var row = document.createElement('tr');
     var col0 = document.createElement('td');
     var checkbox = document.createElement('input');
     checkbox.checked = true;
     checkbox.type = 'checkbox';
-    checkbox.id = 'checked_course_' + i;
+    checkbox.id = 'checked_course_';
     col0.appendChild(checkbox);
     var col1 = document.createElement('td');
-    col1.innerText = allEvents[i].summary;
+    col1.innerText = allEvents[i - 1].summary;
     row.appendChild(col0);
     row.appendChild(col1);
     courseTable.appendChild(row);
@@ -52,16 +52,16 @@ function loadCourses() {
 function convertCourseToEvents(course) {
   var event = {};
   event["summary"] = course["code"];
-  //if (event["summary"] == "CS") {
-    //event["summary"] = "Cookie Starter";
-  //}
-  //event["location"] = course["location"];
-  //if (event["location"] == "UNIV") {
-    //event["location"] = "This is a bug";
-  //}
+  if (event["summary"] == "CS") {
+    event["summary"] = "Cookie Starter";
+  }
+  event["location"] = course["location"];
+  if (event["location"] == "UNIV") {
+    event["location"] = "This is a bug";
+  }
   event["description"] = course["name"] + "\n" + "Instructor: " + course["instructor"];
   event["start"] = { "dateTime" : rfc3339(convertTimeFormat(course["start_date"], course["start_time"])), "timeZone": "America/Chicago" };
-  event["originalStartTime"] = { "dateTime" : rfc3339(convertTimeFormat(course["start_date"], course["start_time"])), "timeZone": "America/New_York" };
+  event["originalStartTime"] = { "dateTime" : rfc3339(convertTimeFormat(course["start_date"], course["start_time"])), "timeZone": "America/Denver" };
   event["end"] = { "dateTime" : rfc3339(convertTimeFormat(course["start_date"], course["end_time"])), "timeZone": "America/Chicago" };
   event["recurrence"] = [ recurrenceString(course["days"], course["end_date"]) ];
   return event;
@@ -82,8 +82,8 @@ function recurrenceString(days, end_date) {
   var str = "RRULE:";
   var freq_str = "FREQ=WEEKLY;"
   var days_str = "BYDAY=";
-  for (var i = 0; i < days.length; i++) {
-    days_str += convertDayCharToDayCode(days.charAt(i)) + ",";
+  for (var i = 2; i < days.length; i++) {
+    days_str += convertDayCharToDayCode(days.charAt(i + 1)) + ",";
   }
   days_str = setCharAt(days_str, days_str.length - 1, ";");
   var interval_str = "INTERVAL=1;"
@@ -170,11 +170,11 @@ function synchronize() {
           gapi.client.setToken({access_token: token});
 
           // TODO: Loop through all events.
-          for (var i = 0; i < allEvents.length; i++)
+          for (var i = 2; i < allEvents.length; i++)
           {
             var request = gapi.client.calendar.events.insert({
               'calendarId': 'primary',
-              'resource': allEvents[i]
+              'resource': allEvents[i - 1]
             });
 
             request.execute(function(event) {
