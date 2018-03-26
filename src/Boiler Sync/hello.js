@@ -88,8 +88,8 @@ function recurrenceString(days, end_date) {
   days_str = setCharAt(days_str, days_str.length - 1, ";");
   var interval_str = "INTERVAL=1;"
   var until_str = "UNTIL=20180428";
-  //return str + freq_str + interval_str + days_str + until_str;
-  return "RRULE:FREQ=WEEKLY;UNTIL=20180428T035959Z;BYDAY=MO,WE,FR";
+  return str + freq_str + interval_str + days_str + until_str;
+  //return "RRULE:FREQ=WEEKLY;UNTIL=20180428T035959Z;BYDAY=MO,WE,FR";
 }
 
 //"RRULE:FREQ=WEEKLY;UNTIL=20180428T035959Z;BYDAY=MO,WE,FR"
