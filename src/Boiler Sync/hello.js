@@ -1,4 +1,5 @@
 var allEvents = [];
+var checkedEvents = [];
 
 /*
  * Converts date to RFC3339 format.
@@ -36,7 +37,7 @@ function loadCourses() {
     var checkbox = document.createElement('input');
     checkbox.checked = true;
     checkbox.type = 'checkbox';
-    checkbox.id = 'checked_course_' + i;
+    checkbox.id = 'course' + i;
     col0.appendChild(checkbox);
     var col1 = document.createElement('td');
     col1.innerText = allEvents[i].summary;
@@ -82,11 +83,8 @@ function recurrenceString(days, end_date) {
   days_str = setCharAt(days_str, days_str.length - 1, ";");
   var interval_str = "INTERVAL=1;"
   var until_str = "UNTIL=20180428";
-  //return str + freq_str + interval_str + days_str + until_str;
-  return "RRULE:FREQ=WEEKLY;UNTIL=20180428T035959Z;BYDAY=MO,WE,FR";
+  return str + freq_str + interval_str + days_str + until_str;
 }
-
-//"RRULE:FREQ=WEEKLY;UNTIL=20180428T035959Z;BYDAY=MO,WE,FR"
 
 /*
  * Converts date and time to Google Calendar format.
@@ -124,7 +122,6 @@ chrome.extension.onRequest.addListener(function (course_array) {
     allEvents[i] = convertCourseToEvents(course_array[i]);
   }
   loadCourses();
-  synchronize();
 })
 
 
@@ -145,9 +142,11 @@ function synchronize() {
           // Set GAPI OAuth2 token.
           gapi.client.setToken({access_token: token});
 
-          // TODO: Loop through all events.
-          for (var i = 0; i < allEvents.length; i++)
-          {
+          for (var i = 0; i < allEvents.length; i++) {
+            var checked = document.getElementById('course' + i).checked;
+            if (checked == false) {
+              continue;
+            }
             var request = gapi.client.calendar.events.insert({
               'calendarId': 'primary',
               'resource': allEvents[i]
@@ -164,6 +163,7 @@ function synchronize() {
 };
 
 window.onload = function() {
+  document.getElementById('submit').onclick = synchronize;
   chrome.windows.getCurrent(function (currentWindow) {
     chrome.tabs.query(
       {
