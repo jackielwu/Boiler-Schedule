@@ -10,6 +10,7 @@
     "key": "ffcagbnnldafabliebiceeocaolpmllf",
     "oauth2": {
       "client_id": "469067359244-nj6hqckskk8312of39qg02idou3v8pn1.apps.googleusercontent.com",
+
       "scopes": [
         "https://www.googleapis.com/auth/calendar"
       ]
