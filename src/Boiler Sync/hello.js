@@ -1,6 +1,12 @@
 var allEvents = [];
 var checkedEvents = [];
 
+
+Date.prototype.getMonthFormatted = function() {
+  var month = this.getMonth() + 1;
+  return month < 10 ? '0' + month : '' + month; // ('' + month) for string result
+}
+
 /*
  * Converts date to RFC3339 format.
  */
@@ -55,10 +61,15 @@ function convertCourseToEvents(course) {
   event["summary"] = course["code"];
   event["location"] = course["location"];
   event["description"] = course["name"] + "\n" + "Instructor: " + course["instructor"];
-  event["start"] = { "dateTime" : rfc3339(convertTimeFormat(course["start_date"], course["start_time"])), "timeZone": "America/New_York" };
-  event["originalStartTime"] = { "dateTime" : rfc3339(convertTimeFormat(course["start_date"], course["start_time"])), "timeZone": "America/New_York" };
-  event["end"] = { "dateTime" : rfc3339(convertTimeFormat(course["start_date"], course["end_time"])), "timeZone": "America/New_York" };
-  event["recurrence"] = [ recurrenceString(course["days"], course["end_date"]) ];
+  event["start"] = {
+    "dateTime" : getRealStartDate(convertTimeFormat(course["start_date"], course["start_time"]), course["days"][0]),
+    "timeZone": "America/New_York"
+  };
+  event["end"] = {
+    "dateTime" : getRealStartDate(convertTimeFormat(course["start_date"], course["end_time"]), course["days"][0]),
+    "timeZone": "America/New_York"
+  };
+  event["recurrence"] = [recurrenceString(course["days"], course["end_date"])];
   return event;
 }
 
@@ -70,6 +81,7 @@ function setCharAt(str,index,chr) {
     return str.substr(0,index) + chr + str.substr(index+1);
 }
 
+
 /*
  * Creates RRULE string for event.
  */
@@ -80,10 +92,10 @@ function recurrenceString(days, end_date) {
   for (var i = 0; i < days.length; i++) {
     days_str += convertDayCharToDayCode(days.charAt(i)) + ",";
   }
-  days_str = setCharAt(days_str, days_str.length - 1, ";");
-  var interval_str = "INTERVAL=1;"
-  var until_str = "UNTIL=20180428";
-  return str + freq_str + interval_str + days_str + until_str;
+  days_str = setCharAt(days_str, days_str.length - 1, "");
+  var end_date_obj = new Date(end_date);
+  var until_str = "UNTIL=" + end_date_obj.getFullYear() + "" + end_date_obj.getMonthFormatted() + "" + end_date_obj.getDate() + "T035959Z;";
+  return str + freq_str + until_str + days_str;
 }
 
 /*
@@ -115,6 +127,32 @@ function convertDayCharToDayCode(day) {
   }
 }
 
+/*
+ *
+ */
+function getRealStartDate(semester_start_date, day_code) {
+  var increment_count;
+  switch(day_code) {
+    case 'M':
+      increment_count = 0;
+      break;
+    case 'T':
+      increment_count = 1;
+      break;
+    case 'W':
+      increment_count = 2;
+      break;
+    case 'R':
+      increment_count = 3;
+      break;
+    case 'F':
+      increment_count = 4;
+      break;
+  }
+
+  semester_start_date.setDate(semester_start_date.getDate() + increment_count);
+  return rfc3339(semester_start_date);
+}
 
 
 chrome.extension.onRequest.addListener(function (course_array) {
@@ -152,6 +190,7 @@ function synchronize() {
               'resource': allEvents[i]
             });
 
+            console.log(allEvents[i]);
             request.execute(function(event) {
               console.log('Event created: ' + event.htmlLink);
             });
@@ -160,6 +199,7 @@ function synchronize() {
       });
     });
   });
+
 };
 
 window.onload = function() {
