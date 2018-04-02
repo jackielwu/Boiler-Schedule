@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="jquery-1.12.0.min.js"></script>
+  <script src="jquery-migrate-1.2.1.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <script src='hello.js'></script>
+  <link href="hello.css" rel="stylesheet" type="text/css" />
+</head>
+<!--set up classes and events buttons when the page start-->
+<body>
+<span class = "PageTitle">Class List </span>
+<span class = "PageTitle" id="classTerm" style = "color:#CFB53B; margin-right">Summer 2018</span>
+<h1></h1>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" id = "firstClose">&times;</span>
+    <label>Activities Title: </label>
+    <input type ="text" maxLength="100" id="input0"><br>
+    <label>Date and Time:</label>
+    <textarea rows="3" cols="30" maxLength="100" id="input1"></textarea><br>
+    <label>Location:</label>
+    <textarea rows="2" cols="30" maxLength="100" id="input2"></textarea><br>
+    <label>Description: </label>
+    <textarea rows="5" cols="30" maxLength="200" id="input3"></textarea>
+  </div>
+</div>
+
+<!--Calendar View-->
+<h1>Add events</h1>
+<div class="month">
+  <ul>
+    <li class="prev">
+  		<a style="color: #CFB53B;" id = "prev">&#10094;</a>
+	</li>
+    <li class="next" >
+  		<a style="color: #CFB53B;" id = "next">&#10095;</a>
+	</li>
+    <li id = "month">
+    </li>
+  </ul>
+</div>
+
+<ul class="weekdays">
+</ul>
+
+<ul class="days">
+  <a id = "day1">1</a>
+  <a id = "day2">2</a>
+  <a id = "day3">3</a>
+  <a id = "day4">4</a>
+  <a id = "day5">5</a>
+  <a id = "day6">6</a>
+  <a id = "day7">7</a>
+  <a id = "day8">8</a>
+  <a id = "day9">9</a>
+  <a id = "day10">10</a>
+  <a id = "day11">11</a>
+  <a id = "day12">12</a>
+  <a id = "day13">13</a>
+  <a id = "day14">14</a>
+  <a id = "day15">15</a>
+  <a id = "day16">16</a>
+  <a id = "day17">17</a>
+  <a id = "day18">18</a>
+  <a id = "day19">19</a>
+  <a id = "day20">20</a>
+  <a id = "day21">21</a>
+  <a id = "day22">22</a>
+  <a id = "day23">23</a>
+  <a id = "day24">24</a>
+  <a id = "day25">25</a>
+  <a id = "day26">26</a>
+  <a id = "day27">27</a>
+  <a id = "day28">28</a>
+  <a id = "day29">29</a>
+  <a id = "day30">30</a>
+  <a id = "day31">31</a>
+</ul>
+
+<!-- The Modal -->
+<div id="myModal1" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" id = "secondClose">&times;</span>
+    <label>Activities Title: </label>
+    <input type ="text" maxLength="100" id="input10"><br>
+    <label>Date and Time:(please keep the same format)</label>
+    <textarea rows="3" cols="30" maxLength="100" id="input11"></textarea><br>
+    <label>Location:</label>
+    <textarea rows="2" cols="30" maxLength="100" id="input12"></textarea><br>
+    <label>Description: </label>
+    <textarea rows="5" cols="30" maxLength="200" id="input13"></textarea>
+  </div>
+</div>
+</body>
+</html>

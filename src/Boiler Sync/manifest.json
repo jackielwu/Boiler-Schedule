@@ -1,0 +1,29 @@
+{
+    "name": "BoilerSync",
+    "description" : "An extension that synchronizes your Purdue courses with Google Calendar.",
+    "version": "1.0",
+    "manifest_version": 2,
+    "browser_action": {
+      "default_popup": "hello.html",
+      "default_icon": "hello_extensions.png"
+    },
+    "key": "dnbkhefnknakaiflolgmfoaemebnbpka",
+    "oauth2": {
+      "client_id": "240768596370-cguloegv7msaivk9ks0dbbf3fljecjo1.apps.googleusercontent.com",
+      "scopes": [
+        "https://www.googleapis.com/auth/calendar"
+      ]
+    },
+    "content_scripts": [{
+      "js": ["jquery-3.3.1.min.js", "fetchCourses.js"],
+      "matches": [ "http://*/*", "https://*/*"]
+      }],
+    "permissions": [
+        "identity",
+        "tabs",
+        "notifications",
+        "http://*/",
+        "https://*/"
+    ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval' https://apis.google.com; object-src 'self'"
+}

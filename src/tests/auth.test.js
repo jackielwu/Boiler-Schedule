@@ -1,4 +1,4 @@
-const auth = require('../auth');
+const auth = require('../old/auth');
 const assert = require('chai').assert;
 
 describe('Unit Test: Auth - Purdue CAS', function() {
