@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+function myFunction() {
+    var txt;
+    var person = prompt("Please enter your name:", "Harry Potter");
+    if (person == null || person == "") {
+        txt = "User cancelled the prompt.";
+    } else {
+        txt = "Hello " + person + "! How are you today?";
+    }
+    document.getElementById("demo").innerHTML = txt;
+}
+</script>
+
+<style>
+* {box-sizing: border-box;}
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif; ;}
+
+.month {
+    padding: 70px 25px;
+    width: 100%;
+    background: black;
+    text-align: center;
+}
+
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: #CFB53B;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.month .prev {
+    float: left;
+    padding-top: 10px;
+}
+
+.month .next {
+    float: right;
+    padding-top: 10px;
+}
+
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color: #CFB53B;
+}
+
+.days {
+    padding: 10px 0;
+    background: black;
+    margin: 0;
+}
+
+.days a {
+    list-style-type: none;
+    display: inline-block;
+    width: 13%;
+    text-align: center;
+    margin-bottom: 20px;
+    //margin-left: 5px;
+    font-size:15px;
+    color: #CFB53B;
+    padding: 5px;
+    height: 35px;
+}
+
+.days a:hover {
+    background: white;
+    color:black !important
+}
+
+/* Add media queries for smaller screens */
+@media screen and (max-width:720px) {
+    .weekdays li, .days a {width: 13.1%;}
+}
+
+@media screen and (max-width: 420px) {
+    .weekdays li, .days a {width: 12.5%;}
+    .days li .active {padding: 2px;}
+}
+
+@media screen and (max-width: 290px) {
+    .weekdays li, .days a {width: 12.2%;}
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+</style>
+</head>
+<body onload="initDate() ;">
+
+<h1>Boiler Schedule</h1>
+
+<div class="month">
+  <ul>
+    <li class="prev">
+  		<a href="#" style="color: #CFB53B;" onclick="changeMonth(this)" id = "prev">&#10094;</a>
+	</li>
+    <li class="next" >
+  		<a href="#" style="color: #CFB53B;" onclick="changeMonth(this)" id = "next">&#10095;</a>
+	</li>
+    <li id = "month">
+    </li>
+  </ul>
+</div>
+
+<ul class="weekdays">
+</ul>
+
+<ul class="days">
+  <a href="#" onclick="showBlock(this)" id = "01">1</a>
+  <a href="#" onclick="showBlock(this)" id = "02">2</a>
+  <a href="#" onclick="showBlock(this)" id = "03">3</a>
+  <a href="#" onclick="showBlock(this)" id = "04">4</a>
+  <a href="#" onclick="showBlock(this)" id = "05">5</a>
+  <a href="#" onclick="showBlock(this)" id = "06">6</a>
+  <a href="#" onclick="showBlock(this)" id = "07">7</a>
+  <a href="#" onclick="showBlock(this)" id = "08">8</a>
+  <a href="#" onclick="showBlock(this)" id = "09">9</a>
+  <a href="#" onclick="showBlock(this)" id = "10">10</a>
+  <a href="#" onclick="showBlock(this)" id = "11">11</a>
+  <a href="#" onclick="showBlock(this)" id = "12">12</a>
+  <a href="#" onclick="showBlock(this)" id = "13">13</a>
+  <a href="#" onclick="showBlock(this)" id = "14">14</a>
+  <a href="#" onclick="showBlock(this)" id = "15">15</a>
+  <a href="#" onclick="showBlock(this)" id = "16">16</a>
+  <a href="#" onclick="showBlock(this)" id = "17">17</a>
+  <a href="#" onclick="showBlock(this)" id = "18">18</a>
+  <a href="#" onclick="showBlock(this)" id = "19">19</a>
+  <a href="#" onclick="showBlock(this)" id = "20">20</a>
+  <a href="#" onclick="showBlock(this)" id = "21">21</a>
+  <a href="#" onclick="showBlock(this)" id = "22">22</a>
+  <a href="#" onclick="showBlock(this)" id = "23">23</a>
+  <a href="#" onclick="showBlock(this)" id = "24">24</a>
+  <a href="#" onclick="showBlock(this)" id = "25">25</a>
+  <a href="#" onclick="showBlock(this)" id = "26">26</a>
+  <a href="#" onclick="showBlock(this)" id = "27">27</a>
+  <a href="#" onclick="showBlock(this)" id = "28">28</a>
+  <a href="#" onclick="showBlock(this)" id = "29">29</a>
+  <a href="#" onclick="showBlock(this)" id = "30">30</a>
+  <a href="#" onclick="showBlock(this)" id = "31">31</a>
+</ul>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <!--<span class="close">&times;</span>-->
+    <label>Activities Title: </label>
+    <input type ="text" maxLength="100" id="input0"><br>
+    <label>Date and Time:</label>
+    <input type="datetime-local" id="input1"><br>
+    <label>Activities Description: </label>
+    <textarea rows="4" cols="50" maxLength="200" id="input2"></textarea>
+  </div>
+</div>
+
+<script>
+	//current year and month
+	var month;
+    var year;
+    var lastMonthDays;
+    var count;
+    //pop up window element
+    var modal = document.getElementById('myModal');
+    //list of events limited to five
+	var addEventList = [
+   		["","",""],
+  		["","",""],
+  		["","",""],
+        ["","",""],
+        ["","",""],
+    ];
+    var monthName = [
+    	"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+    ]
+    //function used to initialize the date
+    function initDate(){
+    	var today = new Date();
+        month = today.getMonth();
+        year = today.getFullYear();
+        document.getElementById("month").innerHTML = monthName[month]+" "+year;
+        count = 0;
+        lastMonthDays = 32;
+        changeDays();
+    }
+    //use to change the days in a month show in calendar
+    function changeDays(){
+        var NumDays = new Date(year, month+1, 0).getDate();
+        if(lastMonthDays > NumDays){
+        	for(var i = 31; i>NumDays; i--){
+        		document.getElementById(i).style.display = "none";
+        	}
+        }
+        else{
+        	for(var i = lastMonthDays; i<=NumDays; i++){
+        		document.getElementById(i).style.display = "inline-block";
+        	}
+        }
+        lastMonthDays = NumDays;
+    }
+    //function to change the month display in calendar
+    function changeMonth(elem){
+        if(elem.id == "prev"){
+        	month--;
+            if(month == -1){
+            	year--;
+                month = 11;
+            }
+        }
+        else{
+        	month++;
+            if(month == 11){
+            	year++;
+                month = 0;
+            }
+        }
+        document.getElementById("month").innerHTML = monthName[month]+" "+year;
+        changeDays();
+    }
+    //function to display modal
+    function showBlock(elem){
+   		modal.style.display = "block";
+        var stringMonth = month+1;
+        if(stringMonth < 10){
+			stringMonth = '0' + stringMonth;
+        }
+        var date = year + "-" + stringMonth + "-" + elem.id +"T20:00";
+        var datecontrol = document.querySelector('input[type="datetime-local"]');
+        datecontrol.value = date;
+    }
+    //function to clear input field of modal
+	function clearInput(){
+    	if(document.getElementById("input0").value == ""){
+        	alert("Title Empty Error, Please try again!");
+            emptyInput();
+        }
+        else if(count == 4){
+        	alert("You can only add 5 extra activities!");
+            emptyInput();
+        }
+        else{
+    		for(var i = 0; i < 3; i++){
+        		var inputId = "input"+i;
+            	var currentInput = document.getElementById(inputId);
+            	addEventList[count][i] = currentInput.value;
+            	currentInput.value = "";
+        	}
+            count++;
+        }
+    }
+    //function to empty the input fields
+    function emptyInput(){
+    	for(var i = 0; i < 3; i++){
+        		var inputId = "input"+i;
+            	var currentInput = document.getElementById(inputId);
+            	currentInput.value = "";
+        }
+    }
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+   		if (event.target == modal) {
+    	    modal.style.display = "none";
+            clearInput();
+    	}
+	}
+</script>
+</body>
+</html>
+

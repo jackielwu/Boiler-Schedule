@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+* {box-sizing: border-box;}
+ul {list-style-type: none;}
+body {font-family: Verdana, sans-serif; ;}
+
+.month {
+    padding: 70px 25px;
+    width: 100%;
+    background: black;
+    text-align: center;
+}
+
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: #CFB53B;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.month .prev {
+    float: left;
+    padding-top: 10px;
+}
+
+.month .next {
+    float: right;
+    padding-top: 10px;
+}
+
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color: #CFB53B;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13%;
+    color: black;
+    text-align: center;
+    //margin-left:5px;
+}
+
+.days {
+    padding: 10px 0;
+    background: black;
+    margin: 0;
+}
+
+.days a {
+    list-style-type: none;
+    display: inline-block;
+    width: 13%;
+    text-align: center;
+    margin-bottom: 20px;
+    //margin-left: 5px;
+    font-size:15px;
+    color: #CFB53B;
+    padding: 5px;
+    height: 35px;
+}
+
+.days a:hover {
+    background: white;
+    color:black !important
+}
+
+/* Add media queries for smaller screens */
+@media screen and (max-width:720px) {
+    .weekdays li, .days a {width: 13.1%;}
+}
+
+@media screen and (max-width: 420px) {
+    .weekdays li, .days a {width: 12.5%;}
+    .days li .active {padding: 2px;}
+}
+
+@media screen and (max-width: 290px) {
+    .weekdays li, .days a {width: 12.2%;}
+}
+</style>
+</head>
+<body>
+
+<h1>Boiler Schedule</h1>
+
+<div class="month">
+  <ul>
+    <li class="prev" id = "prev">&#10094;</li>
+    <li class="next" id = "next">&#10095;</li>
+    <li id = "month">
+      August<br>
+      <span style="font-size:20px">2017</span>
+    </li>
+  </ul>
+</div>
+
+<ul class="weekdays">
+  <li>Mo</li>
+  <li>Tu</li>
+  <li>We</li>
+  <li>Th</li>
+  <li>Fr</li>
+  <li>Sa</li>
+  <li>Su</li>
+</ul>
+
+<ul class="days">
+  <a href="#create">1</a>
+  <a href="#create">2</a>
+  <a href="#create">3</a>
+  <a href="#create">4</a>
+  <a href="#create">5</a>
+  <a href="#create">6</a>
+  <a href="#create">7</a>
+  <a href="#create">8</a>
+  <a href="#create">9</a>
+  <a href="#create">10</a>
+  <a href="#create">11</a>
+  <a href="#create">12</a>
+  <a href="#create">13</a>
+  <a href="#create">14</a>
+  <a href="#create">15</a>
+  <a href="#create">16</a>
+  <a href="#create">17</a>
+  <a href="#create">18</a>
+  <a href="#create">19</a>
+  <a href="#create">20</a>
+  <a href="#create">21</a>
+  <a href="#create">22</a>
+  <a href="#create">23</a>
+  <a href="#create">24</a>
+  <a href="#create">25</a>
+  <a href="#create">26</a>
+  <a href="#create">27</a>
+  <a href="#create">28</a>
+  <a href="#create">29</a>
+  <a href="#create">30</a>
+  <a href="#create">31</a>
+</ul>
+
+</body>
+</html>
