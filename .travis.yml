@@ -1,7 +1,7 @@
 notifications:
           email: false
 language: node_js
-        - "7"
+        - "node"
 install:
         - cd src
         - npm install
