@@ -1,6 +1,7 @@
 notifications:
           email: false
 language: node_js
+node_js:
         - "7"
 install:
         - cd src
