@@ -17,14 +17,14 @@
   },
   "homepage": "https://github.com/jackielwu/Boiler-Schedule#readme",
   "dependencies": {
-    "cas-authentication": "0.0.8",
-    "chai": "^4.2.0",
-    "cheerio": "^1.0.0-rc.3",
-    "express": "^4.17.1",
-    "express-session": "^1.16.2",
-    "lodash": "^4.17.19",
+    "cas-authentication": "latest",
+    "chai": "latest",
+    "cheerio": "latest",
+    "express": "latest",
+    "express-session": "latest",
+    "lodash": "latest",
     "request": "latest",
-    "request-promise": "^4.2.4",
-    "supertest": "^4.0.2"
+    "request-promise": "latest",
+    "supertest": "latest"
   }
 }
