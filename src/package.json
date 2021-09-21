@@ -23,8 +23,9 @@
     "express": "latest",
     "express-session": "latest",
     "lodash": "latest",
+    "nth-check": "^2.0.1",
     "request": "latest",
     "request-promise": "latest",
-    "supertest": "latest"
+    "supertest": "^6.1.6"
   }
 }
